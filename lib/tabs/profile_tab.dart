@@ -1,3 +1,4 @@
+import 'package:acha_aqui/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class ProfileTab extends StatelessWidget {
@@ -14,38 +15,15 @@ Widget build(BuildContext context) {
   return Stack(
     children: <Widget>[
       _biuldbodyBack(),
-      CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            floating: true,
-            snap: true,
-            pinned: false,
-            backgroundColor: Colors.black26,
-            elevation: 0.0,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text("Perfil do Usuário",
-              ),
-              centerTitle: true,
-            ),
-            actions: <Widget>[
-              FlatButton(
-                child: Text("Criar Conta",style: TextStyle(fontSize: 15.0),),
-                textColor: Colors.white,
-                onPressed: (){},
-              ),
-            ],
-          ),
-        ],
-      ),
       Form(
         child: ListView(
           padding: EdgeInsets.fromLTRB(32, 126, 32, 16),
           children: <Widget>[
             TextFormField(
               decoration: InputDecoration(
-                  hintText: "E-mail",
-                  border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(36)
+                hintText: "E-mail",
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(36)
                 ),
               ),
               keyboardType: TextInputType.emailAddress,
@@ -74,19 +52,42 @@ Widget build(BuildContext context) {
             SizedBox(height: 16.0,
             ),
             SizedBox(height: 55.0,
-            child: RaisedButton(
-              child: Text("Entrar",
-                style: TextStyle(
-                  fontSize: 18.0,
+              child: RaisedButton(
+                child: Text("Entrar",
+                  style: TextStyle(
+                    fontSize: 18.0,
+                  ),
                 ),
+                textColor: Colors.white,
+                color: Colors.black26,
+                onPressed: (){},
               ),
-              textColor: Colors.white,
-              color: Colors.black26,
-              onPressed: (){},
-            ),
             ),
           ],
         ),
+      ),
+      CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            floating: true,
+            snap: true,
+            pinned: false,
+            backgroundColor: Colors.black26,
+            elevation: 0.0,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text("Perfil do Usuário",
+              ),
+              centerTitle: true,
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("Criar Conta",style: TextStyle(fontSize: 11.0),),
+                textColor: Colors.white,
+                onPressed: (){},
+              ),
+            ],
+          ),
+        ],
       ),
     ],
   );

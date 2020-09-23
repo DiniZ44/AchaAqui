@@ -27,6 +27,7 @@ class RecentsTab extends StatelessWidget {
                 ),
                 centerTitle: true,
               ),
+
             ),
           ],
         ),
