@@ -2,22 +2,21 @@ import 'package:acha_aqui/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class ProfileTab extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black26,
+      body: variasStacks(),
+    );
+  }
+}
 
-@override
-Widget build(BuildContext context) {
-  Widget _biuldbodyBack() => Container(
-
-    decoration: BoxDecoration(
-      color: Colors.black26,
-    ),
-  );
-
+ Widget variasStacks(){
   return Stack(
     children: <Widget>[
-      _biuldbodyBack(),
       Form(
         child: ListView(
-          padding: EdgeInsets.fromLTRB(32, 126, 32, 16),
+          padding: EdgeInsets.fromLTRB(32, 66, 32, 16),
           children: <Widget>[
             TextFormField(
               decoration: InputDecoration(
@@ -66,33 +65,6 @@ Widget build(BuildContext context) {
           ],
         ),
       ),
-      CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            floating: true,
-            snap: true,
-            pinned: false,
-            backgroundColor: Colors.black26,
-            elevation: 0.0,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text("Perfil do Usuário",
-              ),
-              centerTitle: true,
-            ),
-            actions: <Widget>[
-              FlatButton(
-                child: Text("Criar Conta",style: TextStyle(fontSize: 11.0),),
-                textColor: Colors.white,
-                onPressed: (){},
-              ),
-            ],
-          ),
-        ],
-      ),
     ],
   );
-
 }
-
-}
-

@@ -17,27 +17,78 @@ class HomeScreen extends StatelessWidget {
       controller: _pageController,
       physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
+
         Scaffold(
+          appBar: AppBar(
+              title: Image.asset("assets/icon/name.png",
+                width: 190,
+                height: 23,
+              ),
+            backgroundColor: Colors.black26,
+            centerTitle: true,
+          ),
         body: HomeTab(),
           drawer: CustomDrawer(_pageController),
         ),
+
+
         Scaffold(
+          appBar: AppBar(
+          title: Text('Escolha a cidade'),
+          backgroundColor: Colors.black26,
+          centerTitle: true,
+        ),
           body: CityTab(),
           drawer: CustomDrawer(_pageController),
         ),
+
+
         Scaffold(
+          appBar: AppBar(
+            title: Text('Gerenciar Négocio'),
+            backgroundColor: Colors.black26,
+            centerTitle: true,
+          ),
           drawer: CustomDrawer(_pageController),
           body: BusinessTab(),
         ),
+
+
         Scaffold(
+          appBar: AppBar(
+            title: Text('Perfil do Usuário'),
+            backgroundColor: Colors.black26,
+            centerTitle: true,
+            actions: <Widget>[
+                FlatButton(
+                  child: Text("Criar Conta",style: TextStyle(fontSize: 11.0),),
+                  textColor: Colors.white,
+                  onPressed: (){},
+          ),
+          ],
+          ),
           drawer: CustomDrawer(_pageController),
           body: ProfileTab(),
         ),
+
+
         Scaffold(
+          appBar: AppBar(
+            title: Text('Recentes / Favoritos'),
+            backgroundColor: Colors.black26,
+            centerTitle: true,
+          ),
           drawer: CustomDrawer(_pageController),
           body: RecentsTab(),
         ),
+
+
         Scaffold(
+          appBar: AppBar(
+            title: Text('Contatar os adminstradores'),
+            backgroundColor: Colors.black26,
+            centerTitle: true,
+          ),
           drawer: CustomDrawer(_pageController),
           body: AdmTab(),
         ),
