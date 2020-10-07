@@ -1,3 +1,4 @@
+import 'package:acha_aqui/tiles/subcategory_tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -5,7 +6,7 @@ class SubCategoryScreen extends StatelessWidget {
 
   final DocumentSnapshot snapshot;
 
-  SubCategoryScreen(this.snapshot)
+  SubCategoryScreen(this.snapshot);
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +14,7 @@ class SubCategoryScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.black26,
           title: Text(snapshot.data["title"]),
           centerTitle: true,
         ),
@@ -21,17 +23,17 @@ class SubCategoryScreen extends StatelessWidget {
           builder: (context, snapshot){
             if(!snapshot.hasData)
               return Center(child: CircularProgressIndicator(),);
-            else
-              return TabBarView(
-                physics: NeverScrollableScrollPhysics(),
-                children: <Widget>[
-                  ListView.builder(
-                    padding: EdgeInsets.all(4.0),
-                      itemCount: snapshot.data.documents.length,
-                      itemBuilder: (context, index)
-                  ),
-                ],
+            else{
+              var dividirTiles = ListTile.divideTiles(
+                  tiles:snapshot.data.documents.map((doc){
+                    return SubCategoryTile(doc);}).toList(),
+                  color: Colors.black).toList();
+
+              return ListView(
+                padding: EdgeInsets.all(4.0),
+                children: dividirTiles,
               );
+            }
           },
         )
       ),

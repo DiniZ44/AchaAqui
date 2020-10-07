@@ -4,11 +4,15 @@ import 'package:flutter/material.dart';
 class SubCategoryTile extends StatelessWidget {
 
   final DocumentSnapshot snapshot;
-
-  SubCategoryTile(this.snapshot)
-
+  SubCategoryTile(this.snapshot);
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ListTile(
+      title: Text(snapshot.data["title"]),
+      trailing: Icon(Icons.keyboard_arrow_right),
+      onTap: (){
+      },
+    );
+
   }
 }
