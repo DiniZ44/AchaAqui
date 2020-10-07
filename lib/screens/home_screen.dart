@@ -1,9 +1,11 @@
 import 'package:acha_aqui/tabs/adm_tab.dart';
 import 'package:acha_aqui/tabs/business_tab.dart';
+import 'package:acha_aqui/tabs/category_tab.dart';
 import 'package:acha_aqui/tabs/city_tab.dart';
 import 'package:acha_aqui/tabs/home_tab.dart';
 import 'package:acha_aqui/tabs/profile_tab.dart';
 import 'package:acha_aqui/tabs/recents_tab.dart';
+import 'package:acha_aqui/tiles/category_tile.dart';
 import 'package:acha_aqui/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +33,15 @@ class HomeScreen extends StatelessWidget {
           drawer: CustomDrawer(_pageController),
         ),
 
+        Scaffold(
+          appBar: AppBar(
+            title: Text('Categorias'),
+            backgroundColor: Colors.black26,
+            centerTitle: true,
+          ),
+          body: CategoryTab(),
+          drawer: CustomDrawer(_pageController),
+        ),
 
         Scaffold(
           appBar: AppBar(

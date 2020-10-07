@@ -50,6 +50,17 @@ Widget build(BuildContext context) {
                         },
                       ),
                       ListTile(
+                        leading: Icon(Icons.shopping_basket,
+                          size: 27,
+                        ),
+                        title: Text("Serviços",
+                          style: TextStyle(fontSize: 15),),
+                        onTap: (){
+                          Navigator.of(context).pop();
+                          _pageControler.jumpToPage(1);
+                        },
+                      ),
+                      ListTile(
                         leading: Icon(Icons.map,
                         size: 27,
                         ),
@@ -57,7 +68,7 @@ Widget build(BuildContext context) {
                           style: TextStyle(fontSize: 15),),
                         onTap: (){
                           Navigator.of(context).pop();
-                          _pageControler.jumpToPage(1);
+                          _pageControler.jumpToPage(2);
 
                         },
                       ),
@@ -68,7 +79,7 @@ Widget build(BuildContext context) {
                           style: TextStyle(fontSize: 15),),
                         onTap: (){
                           Navigator.of(context).pop();
-                          _pageControler.jumpToPage(2);
+                          _pageControler.jumpToPage(3);
                         },
                       ),
                       ListTile(
@@ -78,7 +89,7 @@ Widget build(BuildContext context) {
                           style: TextStyle(fontSize: 15),),
                         onTap: (){
                           Navigator.of(context).pop();
-                          _pageControler.jumpToPage(3);
+                          _pageControler.jumpToPage(4);
 
                         },
                       ),
@@ -90,7 +101,7 @@ Widget build(BuildContext context) {
                           style: TextStyle(fontSize: 15),),
                         onTap: (){
                           Navigator.of(context).pop();
-                          _pageControler.jumpToPage(4);
+                          _pageControler.jumpToPage(5);
 
                         },
                       ),
@@ -101,7 +112,7 @@ Widget build(BuildContext context) {
                         style: TextStyle(fontSize: 15),),
                         onTap: (){
                           Navigator.of(context).pop();
-                          _pageControler.jumpToPage(5);
+                          _pageControler.jumpToPage(6);
 
                         },
                       ),
