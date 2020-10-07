@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "31114470194",
+    "firebase_url": "https://achaaqui-a46c7.firebaseio.com",
+    "project_id": "achaaqui-a46c7",
+    "storage_bucket": "achaaqui-a46c7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31114470194:android:1088b6d7118626dd5fad2b",
+        "android_client_info": {
+          "package_name": "com.br.diniz.acha_aqui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "31114470194-an8pb2k17sn3uplsi682fhth4nc0uedv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.br.diniz.acha_aqui",
+            "certificate_hash": "7a209c54897cf40f4f9fd8aa2afb3a7419ce5618"
+          }
+        },
+        {
+          "client_id": "31114470194-rk8scgr4pjv09cba02ajdl73glhmi8lg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDooe5uTLWSFC_JPUWw26Y_M7DavgHG8Ko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "31114470194-rk8scgr4pjv09cba02ajdl73glhmi8lg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
