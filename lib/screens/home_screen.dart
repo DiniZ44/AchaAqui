@@ -1,3 +1,4 @@
+import 'package:acha_aqui/screens/create_login_screen.dart';
 import 'package:acha_aqui/tabs/adm_tab.dart';
 import 'package:acha_aqui/tabs/business_tab.dart';
 import 'package:acha_aqui/tabs/category_tab.dart';
@@ -74,7 +75,11 @@ class HomeScreen extends StatelessWidget {
                 FlatButton(
                   child: Text("Criar Conta",style: TextStyle(fontSize: 11.0),),
                   textColor: Colors.white,
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => CreateLoginScreen())
+                    );
+                  },
           ),
           ],
           ),
