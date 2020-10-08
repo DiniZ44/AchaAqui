@@ -1,102 +1,142 @@
+import 'package:acha_aqui/models/user_model.dart';
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 
-class CreateLoginScreen extends StatelessWidget {
+class CreateLoginScreen extends StatefulWidget {
+  @override
+  _CreateLoginScreenState createState() => _CreateLoginScreenState();
+}
+
+class _CreateLoginScreenState extends State<CreateLoginScreen> {
+
+  final _nameC = TextEditingController();
+  final _contatoC = TextEditingController();
+  final _emailC = TextEditingController();
+  final _senhaC = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey,
+
       appBar: AppBar(
         backgroundColor: Colors.black26,
         title: Text("Criar Conta"),
             centerTitle: true,
       ),
-      body:
-        Form(
-          key: _formKey,
-          child: ListView(
-            padding: EdgeInsets.fromLTRB(32, 36, 32, 16),
-            children: <Widget>[
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: "Nome",
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(36)
+      body: ScopedModelDescendant<UserModel>(
+          builder: (context, child, model){
+            if(model.isLoading)
+              return Center(child: CircularProgressIndicator(),);
+            return Form(
+              key: _formKey,
+              child: ListView(
+                padding: EdgeInsets.fromLTRB(32, 36, 32, 16),
+                children: <Widget>[
+                  TextFormField(
+                    controller: _nameC,
+                    decoration: InputDecoration(
+                      hintText: "Nome",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(36)
+                      ),
+                    ),
+                    validator: (text){
+                      if(text.isEmpty ) return "Nome inválido";
+                    },
                   ),
-                ),
-                validator: (text){
-                  if(text.isEmpty ) return "Nome inválido";
-                },
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 16, bottom: 10),
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: "Contato",
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(36)
+                  Padding(
+                    padding: EdgeInsets.only(top: 16, bottom: 10),
                   ),
-                ),
-                keyboardType: TextInputType.phone,
-                validator: (text){
-                  if(text.isEmpty ) return "Contato inválido";
-                },
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 16, bottom: 10),
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: "E-mail",
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(36)
+                  TextFormField(
+                    controller: _contatoC,
+                    decoration: InputDecoration(
+                      hintText: "Contato",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(36)
+                      ),
+                    ),
+                    keyboardType: TextInputType.phone,
+                    validator: (text){
+                      if(text.isEmpty ) return "Contato inválido";
+                    },
                   ),
-                ),
-                keyboardType: TextInputType.emailAddress,
-                validator: (text){
-                  if(text.isEmpty || !text.contains("@")) return "E-mail inválido";
-                },
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 16, bottom: 10),
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                    hintText: "Senha",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(36)
-                    )
-                ),
-                obscureText: true,
-                validator: (text){
-                  if(text.isEmpty || text.length > 3) return "Senha inválido";
-                },
-              ),
-              SizedBox(height: 16.0,
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 16, bottom: 10),
-              ),
-              SizedBox(height: 55.0,
-                child: RaisedButton(
-                  child: Text("Cadastrar",
-                    style: TextStyle(
-                      fontSize: 18.0,
+                  Padding(
+                    padding: EdgeInsets.only(top: 16, bottom: 10),
+                  ),
+                  TextFormField(
+                    controller: _emailC,
+                    decoration: InputDecoration(
+                      hintText: "E-mail",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(36)
+                      ),
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                    validator: (text){
+                      if(text.isEmpty || !text.contains("@")) return "E-mail inválido";
+                    },
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 16, bottom: 10),
+                  ),
+                  TextFormField(
+                    controller: _senhaC,
+                    decoration: InputDecoration(
+                        hintText: "Senha",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(36)
+                        )
+                    ),
+                    obscureText: true,
+                    validator: (text){
+                      if(text.isEmpty ) return "Senha inválido";
+                    },
+                  ),
+                  SizedBox(height: 16.0,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 16, bottom: 10),
+                  ),
+                  SizedBox(height: 55.0,
+                    child: RaisedButton(
+                      child: Text("Cadastrar",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                        ),
+                      ),
+                      textColor: Colors.white,
+                      color: Colors.black26,
+                      onPressed: (){
+                        if(_formKey.currentState.validate()){
+
+                          Map<String, dynamic> userData= {
+                            "nome": _nameC.text,
+                            "contato": _contatoC.text,
+                            "email": _emailC.text,
+                          };
+
+                          model.signUp(userData: userData,
+                              pass: _senhaC.text,
+                              onSucess: onSucess,
+                              onFailed: onFailed);
+                        }
+                      },
                     ),
                   ),
-                  textColor: Colors.white,
-                  color: Colors.black26,
-                  onPressed: (){
-                    if(_formKey.currentState.validate()){
-
-                    }
-                  },
-                ),
+                ],
               ),
-            ],
-          ),
-        ),
+            );
+          })
     );
+  }
+
+  void onSucess(){
+
+  }
+
+  void onFailed(){
+
   }
 }

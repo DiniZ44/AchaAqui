@@ -69,7 +69,7 @@ class ProfileTab extends StatelessWidget {
                     onPressed: (){
                       if(_formKey.currentState.validate()){
                       }
-                      model.signIn();
+
                     },
                   ),
                 ),
