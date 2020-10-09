@@ -61,10 +61,25 @@ class _ProfileTabState extends State<ProfileTab> {
                 Align(
                   alignment: Alignment.centerRight,
                   child: FlatButton(
-                    onPressed: (){},
                     child: Text("Esqueci minha senha", textAlign: TextAlign.right,
                     ),
                     padding: EdgeInsets.zero,
+                    onPressed: (){
+                      if(_emailC.text.isEmpty){
+                        _scaffold.currentState.showSnackBar(
+                            SnackBar(content: Text("Por favor insira seu e-mail."),
+                              backgroundColor: Colors.black26,
+                              duration: Duration(seconds: 2),
+                            ));
+                      }else{
+                        model.recoverPass(_emailC.text);
+                        _scaffold.currentState.showSnackBar(
+                            SnackBar(content: Text("Enviamos o link de recuperação para seu e-mail"),
+                              backgroundColor: Colors.black26,
+                              duration: Duration(seconds: 2),
+                            ));
+                      }
+                    },
                   ),
                 ),
                 SizedBox(height: 16.0,

@@ -62,9 +62,8 @@ class UserModel extends Model{
     });
 
   }
-  void recoverPass(){
-
-
+  void recoverPass(String email){
+    _auth.sendPasswordResetEmail(email: email);
   }
 
   void singOut() async {
