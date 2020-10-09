@@ -17,10 +17,12 @@ class _CreateLoginScreenState extends State<CreateLoginScreen> {
   final _senhaC = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+  final _scaffold = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffold,
       backgroundColor: Colors.grey,
 
       appBar: AppBar(
@@ -94,7 +96,7 @@ class _CreateLoginScreenState extends State<CreateLoginScreen> {
                     ),
                     obscureText: true,
                     validator: (text){
-                      if(text.isEmpty || text.length > 6) return "Senha inválido";
+                      if(text.isEmpty || text.length < 6) return "Senha inválido";
                     },
                   ),
                   SizedBox(height: 16.0,
@@ -138,12 +140,23 @@ class _CreateLoginScreenState extends State<CreateLoginScreen> {
   }
 
   void onSucess(){
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => HomeScreen())
-    );
+    _scaffold.currentState.showSnackBar(
+        SnackBar(content: Text("Usuário criado com sucesso"),
+        backgroundColor: Colors.black26,
+          duration: Duration(seconds: 2),
+        ));
+    Future.delayed(Duration(seconds: 2)).then((_){
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => HomeScreen()));
+    });
   }
 
   void onFailed(){
+    _scaffold.currentState.showSnackBar(
+        SnackBar(content: Text("Erro ao criar usuário ",),
+          backgroundColor: Colors.black26,
+          duration: Duration(seconds: 2),
+        ));
 
   }
 }

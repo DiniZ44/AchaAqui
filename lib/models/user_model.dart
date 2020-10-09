@@ -33,21 +33,42 @@ class UserModel extends Model{
     notifyListeners();
   });
   }
-  void signIn() async{
+  void signIn({@required String email,
+    @required String pass,
+    @required VoidCallback onSucess,
+    @required VoidCallback onFailed}) async{
     isLoading = true;
     notifyListeners();
-
-   await Future.delayed(Duration(seconds: 3));
-    isLoading = false;
-    notifyListeners();
+    _auth.signInWithEmailAndPassword(
+        email: email, 
+        password: pass
+    ).then((user) async {
+      firebaseUser = user;
+      onSucess();
+      isLoading = false;
+      notifyListeners();
+    }).catchError((e){
+      onFailed();
+      isLoading = false;
+      notifyListeners();
+    });
 
   }
   void recoverPass(){
 
 
   }
-  void isLoggedIn(){
 
+  void singOut() async {
+    await _auth.signOut();
+
+    userData= Map();
+    firebaseUser = null;
+    notifyListeners();
+  }
+
+  bool isLoggedIn(){
+    return firebaseUser != null;
   }
 
   Future<Null> _saveUserData(Map<String, dynamic> userData) async{

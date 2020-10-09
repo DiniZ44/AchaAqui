@@ -3,12 +3,21 @@ import 'package:acha_aqui/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-class ProfileTab extends StatelessWidget {
-  final _formKey = GlobalKey<FormState>();
+class ProfileTab extends StatefulWidget {
+  @override
+  _ProfileTabState createState() => _ProfileTabState();
+}
 
+class _ProfileTabState extends State<ProfileTab> {
+
+  final _formKey = GlobalKey<FormState>();
+  final _emailC = TextEditingController();
+  final _senhaC = TextEditingController();
+  final _scaffold = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffold,
       backgroundColor: Colors.black26,
       body: ScopedModelDescendant<UserModel>(
         builder: (context, child, model){
@@ -20,6 +29,7 @@ class ProfileTab extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(32, 66, 32, 16),
               children: <Widget>[
                 TextFormField(
+                  controller: _emailC,
                   decoration: InputDecoration(
                     hintText: "E-mail",
                     border: OutlineInputBorder(
@@ -35,6 +45,7 @@ class ProfileTab extends StatelessWidget {
                   padding: EdgeInsets.only(top: 16, bottom: 10),
                 ),
                 TextFormField(
+                  controller: _senhaC,
                   decoration: InputDecoration(
                       hintText: "Senha",
                       border: OutlineInputBorder(
@@ -70,6 +81,12 @@ class ProfileTab extends StatelessWidget {
                       if(_formKey.currentState.validate()){
                       }
 
+                      model.signIn(
+                          email: _emailC.text,
+                          pass: _senhaC.text,
+                          onSucess: onSucess,
+                          onFailed: onFailed
+                      );
                     },
                   ),
                 ),
@@ -79,5 +96,23 @@ class ProfileTab extends StatelessWidget {
         },
       ),
     );
+  }
+
+  void onSucess(){
+    _scaffold.currentState.showSnackBar(
+        SnackBar(content: Text("Usuário Logado com sucesso"),
+          backgroundColor: Colors.black26,
+          duration: Duration(seconds: 3),
+        ));
+
+  }
+
+  void onFailed(){
+    _scaffold.currentState.showSnackBar(
+        SnackBar(content: Text("Erro ao realizar login! Verifique seu e-mail ou senha"),
+          backgroundColor: Colors.black26,
+          duration: Duration(seconds: 3),
+        ));
+
   }
 }
