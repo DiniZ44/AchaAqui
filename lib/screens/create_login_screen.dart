@@ -13,8 +13,8 @@ class _CreateLoginScreenState extends State<CreateLoginScreen> {
   final _contatoC = TextEditingController();
   final _emailC = TextEditingController();
   final _senhaC = TextEditingController();
-
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
