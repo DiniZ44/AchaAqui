@@ -1,4 +1,6 @@
 import 'package:acha_aqui/models/user_model.dart';
+import 'package:acha_aqui/screens/home_screen.dart';
+import 'package:acha_aqui/tabs/profile_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -13,6 +15,7 @@ class _CreateLoginScreenState extends State<CreateLoginScreen> {
   final _contatoC = TextEditingController();
   final _emailC = TextEditingController();
   final _senhaC = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -91,7 +94,7 @@ class _CreateLoginScreenState extends State<CreateLoginScreen> {
                     ),
                     obscureText: true,
                     validator: (text){
-                      if(text.isEmpty ) return "Senha inválido";
+                      if(text.isEmpty || text.length > 6) return "Senha inválido";
                     },
                   ),
                   SizedBox(height: 16.0,
@@ -111,16 +114,18 @@ class _CreateLoginScreenState extends State<CreateLoginScreen> {
                       onPressed: (){
                         if(_formKey.currentState.validate()){
 
-                          Map<String, dynamic> userData= {
+                          Map<String, dynamic> _userData = {
                             "nome": _nameC.text,
                             "contato": _contatoC.text,
-                            "email": _emailC.text,
+                            "email": _emailC.text
                           };
 
-                          model.signUp(userData: userData,
+                          model.signUp(
+                              userData: _userData,
                               pass: _senhaC.text,
                               onSucess: onSucess,
-                              onFailed: onFailed);
+                              onFailed: onFailed
+                          );
                         }
                       },
                     ),
@@ -133,7 +138,9 @@ class _CreateLoginScreenState extends State<CreateLoginScreen> {
   }
 
   void onSucess(){
-
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => HomeScreen())
+    );
   }
 
   void onFailed(){

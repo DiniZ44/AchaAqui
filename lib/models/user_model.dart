@@ -19,13 +19,11 @@ class UserModel extends Model{
   notifyListeners();
 
   _auth.createUserWithEmailAndPassword(
-      email: "email",
+      email: userData["email"],
       password: pass
   ).then((user) async {
     firebaseUser = user;
-
     await _saveUserData(userData);
-
     onSucess();
     isLoading = false;
     notifyListeners();
@@ -54,7 +52,7 @@ class UserModel extends Model{
 
   Future<Null> _saveUserData(Map<String, dynamic> userData) async{
     this.userData = userData;
-    await Firestore.instance.collection("Usuario").document(firebaseUser.uid).setData(userData);
+    await Firestore.instance.collection("Usuarios").document(firebaseUser.uid).setData(userData);
 
   }
 }
