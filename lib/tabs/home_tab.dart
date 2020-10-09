@@ -11,7 +11,7 @@ class HomeTab extends StatelessWidget {
       backgroundColor: Colors.black26,
       body: Form(
         child: ListView(
-          padding: EdgeInsets.fromLTRB(32, 66, 32, 86),
+          padding: EdgeInsets.fromLTRB(32, 66, 32, 16),
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 366, bottom: 10),

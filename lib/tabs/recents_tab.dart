@@ -17,7 +17,12 @@ class RecentsTab extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 19.0
                   ),
-                )
+                ),
+                SizedBox(
+                  height: 25.0,
+                ),
+                Text( "Você não possui pesquisas favoritas ou recentes"
+                ),
               ],
             ),
           );

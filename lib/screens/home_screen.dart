@@ -1,4 +1,6 @@
+import 'package:acha_aqui/models/user_model.dart';
 import 'package:acha_aqui/screens/create_login_screen.dart';
+import 'package:acha_aqui/screens/logged_screen.dart';
 import 'package:acha_aqui/tabs/adm_tab.dart';
 import 'package:acha_aqui/tabs/business_tab.dart';
 import 'package:acha_aqui/tabs/category_tab.dart';
@@ -9,6 +11,7 @@ import 'package:acha_aqui/tabs/recents_tab.dart';
 import 'package:acha_aqui/tiles/category_tile.dart';
 import 'package:acha_aqui/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class HomeScreen extends StatelessWidget {
 
@@ -73,6 +76,7 @@ class HomeScreen extends StatelessWidget {
             centerTitle: true,
             actions: <Widget>[
                 FlatButton(
+
                   child: Text("Criar Conta",style: TextStyle(fontSize: 11.0),),
                   textColor: Colors.white,
                   onPressed: (){
@@ -84,7 +88,14 @@ class HomeScreen extends StatelessWidget {
           ],
           ),
           drawer: CustomDrawer(_pageController),
-          body: ProfileTab(),
+          body: ScopedModelDescendant<UserModel>(
+            builder: (context, child, model){
+              if(model.isLoggedIn())
+                return LoggedScreen();
+              else
+                return ProfileTab();
+            },
+          )
         ),
 
 

@@ -2,7 +2,7 @@ import 'package:acha_aqui/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-class CityTab extends StatelessWidget {
+class LoggedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +21,27 @@ class CityTab extends StatelessWidget {
                   SizedBox(
                     height: 25.0,
                   ),
-                  Text( "O sistema de mapas ainda está desenvolvimento "
+                  Text( "Você está Logado!!",
+                    style: TextStyle(
+                      fontSize: 19.0
+                    ),
+                  ),
+                  SizedBox(
+                    height: 25.0,
+                  ),
+                  SizedBox(height: 45.0,
+                    child: RaisedButton(
+                      child: Text("Deslogar",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                        ),
+                      ),
+                      textColor: Colors.white,
+                      color: Colors.black26,
+                      onPressed: (){
+                        model.singOut();
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -31,7 +51,3 @@ class CityTab extends StatelessWidget {
     );
   }
 }
-
-
-
-

@@ -14,6 +14,7 @@ class _ProfileTabState extends State<ProfileTab> {
   final _emailC = TextEditingController();
   final _senhaC = TextEditingController();
   final _scaffold = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,8 +103,12 @@ class _ProfileTabState extends State<ProfileTab> {
     _scaffold.currentState.showSnackBar(
         SnackBar(content: Text("Usuário Logado com sucesso"),
           backgroundColor: Colors.black26,
-          duration: Duration(seconds: 3),
+          duration: Duration(seconds: 2),
         ));
+    Future.delayed(Duration(seconds: 2)).then((_){
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => HomeScreen()));
+    });
 
   }
 
@@ -111,7 +116,7 @@ class _ProfileTabState extends State<ProfileTab> {
     _scaffold.currentState.showSnackBar(
         SnackBar(content: Text("Erro ao realizar login! Verifique seu e-mail ou senha"),
           backgroundColor: Colors.black26,
-          duration: Duration(seconds: 3),
+          duration: Duration(seconds: 2),
         ));
 
   }

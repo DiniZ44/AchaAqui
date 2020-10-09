@@ -11,6 +11,13 @@ class UserModel extends Model{
 
   bool isLoading = false;
 
+
+  @override
+  void addListener(VoidCallback listener) {
+    super.addListener(listener);
+    _loadUser();
+  }
+
   void signUp({@required Map<String, dynamic> userData,
               @required String pass,
               @required VoidCallback onSucess,
@@ -44,6 +51,7 @@ class UserModel extends Model{
         password: pass
     ).then((user) async {
       firebaseUser = user;
+      await _loadUser();
       onSucess();
       isLoading = false;
       notifyListeners();
@@ -76,4 +84,17 @@ class UserModel extends Model{
     await Firestore.instance.collection("Usuarios").document(firebaseUser.uid).setData(userData);
 
   }
+
+  Future<Null> _loadUser() async {
+    if(firebaseUser == null)
+      firebaseUser = await _auth.currentUser();
+    if(firebaseUser != null){
+      if(userData["nome"] == null){
+        DocumentSnapshot docUser = await Firestore.instance.collection("Usuarios").document(firebaseUser.uid).get();
+        userData = docUser.data;
+      }
+    }
+    notifyListeners();
+  }
+
 }
