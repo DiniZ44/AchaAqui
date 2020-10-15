@@ -108,8 +108,6 @@ class _CreateBussinessScreenState extends State<CreateBussinessScreen> {
                         onPressed: (){
                           if(_formKey.currentState.validate()){
 
-
-
                           }
                         },
                       ),

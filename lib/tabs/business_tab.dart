@@ -1,3 +1,4 @@
+import 'package:acha_aqui/screens/create_bussines_screen.dart';
 import 'package:flutter/material.dart';
 
 class BusinessTab extends StatelessWidget {
@@ -5,14 +6,7 @@ class BusinessTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black26,
-      body: Stacks(),
-    );
-  }
-}
-Widget Stacks(){
-  return Stack(
-    children: <Widget>[
-      ListView(
+      body: ListView(
         padding: EdgeInsets.fromLTRB(42, 66, 42, 16),
         children: <Widget>[
           SizedBox(height: 35.0,
@@ -25,7 +19,11 @@ Widget Stacks(){
               ),
               textColor: Colors.white,
               color: Colors.black12,
-              onPressed: (){},
+              onPressed: (){
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => CreateBussinessScreen())
+                );
+              },
             ),
           ),
           SizedBox(height: 25.0,
@@ -45,8 +43,8 @@ Widget Stacks(){
           ),
         ],
       ),
-    ],
-  );
+    );
+  }
 }
 
 

@@ -1,3 +1,4 @@
+import 'package:acha_aqui/screens/create_bussines_screen.dart';
 import 'package:acha_aqui/tabs/business_tab.dart';
 import 'package:acha_aqui/tiles/category_tile.dart';
 import 'package:flutter/cupertino.dart';
@@ -26,7 +27,9 @@ class HomeTab extends StatelessWidget {
                 textColor: Colors.black,
                 color: Colors.amber,
                 onPressed: (){
-
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => CreateBussinessScreen())
+                  );
                 },
               ),
             ),
