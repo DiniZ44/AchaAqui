@@ -1,3 +1,4 @@
+import 'package:acha_aqui/models/bussines_model.dart';
 import 'package:acha_aqui/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -18,6 +19,7 @@ class _CreateBussinessScreenState extends State<CreateBussinessScreen> {
 
   final _formKey = GlobalKey<FormState>();
   final _scaffold = GlobalKey<ScaffoldState>();
+
 
   @override
   Widget build(BuildContext context) {
