@@ -102,9 +102,9 @@ class _CreateLoginScreenState extends State<CreateLoginScreen> {
                   SizedBox(height: 16.0,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 16, bottom: 10),
+                    padding: EdgeInsets.only(top: 12, bottom: 10),
                   ),
-                  SizedBox(height: 55.0,
+                  SizedBox(height: 45.0,
                     child: RaisedButton(
                       child: Text("Cadastrar",
                         style: TextStyle(
@@ -129,6 +129,24 @@ class _CreateLoginScreenState extends State<CreateLoginScreen> {
                               onFailed: onFailed
                           );
                         }
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 16, bottom: 10),
+                  ),
+                  SizedBox(height: 38.0,
+                    child: RaisedButton(
+                      child: Text("Cancelar",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                        ),
+                      ),
+                      textColor: Colors.white,
+                      color: Colors.black26,
+                      onPressed: (){
+                        Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(builder: (context) => HomeScreen()));
                       },
                     ),
                   ),

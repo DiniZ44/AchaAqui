@@ -24,6 +24,12 @@ class _CreateBussinessScreenState extends State<CreateBussinessScreen> {
     return Scaffold(
         key: _scaffold,
         backgroundColor: Colors.grey,
+
+        appBar: AppBar(
+          backgroundColor: Colors.black26,
+          title: Text("Cadastrar Empresa"),
+          centerTitle: true,
+        ),
         body: ScopedModelDescendant<UserModel>(
             builder: (context, child, model){
               if(model.isLoading)
@@ -33,6 +39,10 @@ class _CreateBussinessScreenState extends State<CreateBussinessScreen> {
                 child: ListView(
                   padding: EdgeInsets.fromLTRB(32, 36, 32, 16),
                   children: <Widget>[
+
+                    Padding(
+                      padding: EdgeInsets.only(top: 16, bottom: 10),
+                    ),
                     TextFormField(
                       controller: _titleC,
                       decoration: InputDecoration(
@@ -96,7 +106,7 @@ class _CreateBussinessScreenState extends State<CreateBussinessScreen> {
                     Padding(
                       padding: EdgeInsets.only(top: 16, bottom: 10),
                     ),
-                    SizedBox(height: 55.0,
+                    SizedBox(height: 38.0,
                       child: RaisedButton(
                         child: Text("Cadastrar",
                           style: TextStyle(
@@ -109,6 +119,24 @@ class _CreateBussinessScreenState extends State<CreateBussinessScreen> {
                           if(_formKey.currentState.validate()){
 
                           }
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 16, bottom: 10),
+                    ),
+                    SizedBox(height: 38.0,
+                      child: RaisedButton(
+                        child: Text("Cancelar",
+                          style: TextStyle(
+                            fontSize: 18.0,
+                          ),
+                        ),
+                        textColor: Colors.white,
+                        color: Colors.black26,
+                        onPressed: (){
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(builder: (context) => HomeScreen()));
                         },
                       ),
                     ),

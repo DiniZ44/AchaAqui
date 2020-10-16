@@ -17,5 +17,15 @@ class BussinesData {
   }
 
 
+  Map<String, dynamic> toMap(){
+    return{
+      'title': title,
+      'descricao': descricao,
+      'local': local,
+      'contato': contato
+    };
+  }
+
+
 
 }
